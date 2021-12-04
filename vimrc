@@ -6,7 +6,7 @@ call plug#begin()
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 Plug 'arcticicestudio/nord-vim'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
@@ -20,6 +20,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'edkolev/tmuxline.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'preservim/vimux'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'preservim/tagbar'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'ryanoasis/vim-devicons' " Load it as the last plugin
 
@@ -31,9 +34,9 @@ syntax enable
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
-let g:gruvbox_contrast_dark = "hard"
-let g:gruvbox_contrast_light = "hard"
-let g:airline_theme='gruvbox'
+" let g:gruvbox_contrast_dark = "hard"
+" let g:gruvbox_contrast_light = "hard"
+let g:airline_theme='dracula'
 let g:airline_powerline_fonts = 1
 
 " ChangeBackground changes the background mode based on macOS's `Appearance`
@@ -44,7 +47,7 @@ function! ChangeBackground()
   else
     set background=light  " for light version of theme
   endif
-  colorscheme gruvbox
+  colorscheme dracula
 
   try
     execute "AirlineRefresh"
@@ -345,6 +348,10 @@ let g:go_imports_autosave=1
 
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_operators = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
 
 let g:go_fold_enable = []
 
@@ -393,14 +400,14 @@ augroup END
 let g:go_def_mapping_enabled = 0
 
 " ==================== delimitMate ====================
-let g:delimitMate_expand_cr = 1   
-let g:delimitMate_expand_space = 1    
-let g:delimitMate_smart_quotes = 1    
-let g:delimitMate_expand_inside_quotes = 0    
-let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'   
-let g:delimitMate_quotes = "\" '"
+" let g:delimitMate_expand_cr = 1   
+" let g:delimitMate_expand_space = 1    
+" let g:delimitMate_smart_quotes = 1    
+" let g:delimitMate_expand_inside_quotes = 0    
+" let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'   
+" let g:delimitMate_quotes = "\" '"
 
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+" imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 
 
 " ==================== NerdTree ====================
@@ -416,6 +423,8 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " Close the tab if NERDTree is the only window remaining in it.
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 " CtrlP
 let g:ctrlp_map = '<c-p>'
@@ -597,3 +606,4 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
