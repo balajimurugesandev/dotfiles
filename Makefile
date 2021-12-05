@@ -4,7 +4,9 @@ sync:
 	mkdir -p ~/.config/fish
 	mkdir -p ~/.tmux/
 
-	[ -f ~/.config/fish/config.fish ] || ln -s $(PWD)/config.fish ~/.config/fish/config.fish
+	[ -f ~/.config/fish/config.fish ] || ln -s $(PWD)/fish/config.fish ~/.config/fish/config.fish
+	[ -d ~/.config/fish/conf.d ] || mkdir -p ~/.config/fish/conf.d
+	[ -f ~/.config/fish/conf.d/dracula.fish ] || ln -s $(PWD)/fish/dracula.fish ~/.config/fish/conf.d/dracula.fish
 	[ -f ~/.vimrc ] || ln -s $(PWD)/vimrc ~/.vimrc
 	[ -f ~/.config/nvim/init.vim ] || ln -s $(PWD)/nvimconf ~/.config/nvim/init.vim
 	[ -f ~/.tmux.conf ] || ln -s $(PWD)/tmuxconf ~/.tmux.conf

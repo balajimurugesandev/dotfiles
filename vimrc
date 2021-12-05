@@ -283,6 +283,13 @@ vnoremap L g_
 " Act like D and C
 nnoremap Y y$
 
+nnoremap <silent> <A-j> :m .+1<CR>==
+nnoremap <silent> <A-k> :m .-2<CR>==
+inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
+vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
+
 " Do not show stupid q: window
 map q: :q
 
@@ -412,9 +419,12 @@ let g:go_def_mapping_enabled = 0
 
 " ==================== NerdTree ====================
 " For toggling
-noremap <Leader>n :NERDTreeToggle<cr>
-noremap <Leader>f :NERDTreeFind<cr>
+nnoremap <lader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
+let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
@@ -433,6 +443,8 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_root_markers = ['pom.xml', '.p4ignore', 'go.mod']
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
+" lose NERDTree window
+let g:ctrlp_dont_split = 'NERD'
 
 " Nord 
 
